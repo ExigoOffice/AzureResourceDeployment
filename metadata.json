@@ -2,6 +2,6 @@
   "itemDisplayName": "Create Azure Web App Stack for Exigo Office Web Application",
   "description": "Creates an Azure Web app with Golang extension, Template and Golang Extension originally authored by Wade Wegner of Microsoft",
   "summary": "This template creates an Azure App Service Service plan, relates App Service, and adds traffic manager. Template originally authored by Bruce Bell of Exigo Office, Inc.",
-  "githubUsername": "ExigoOffice",
+  "githubUsername": "brucebexigo",
   "dateUpdated": "2017-05-10"
 }
