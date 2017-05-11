@@ -1,0 +1,89 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "siteName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of azure web app"
+      }
+    },
+    "tier": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Standard",
+      "metadata": {
+        "description": "SKU value"
+      }
+    },
+    "workerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "2",
+      "metadata": {
+        "description": "Worker Size( 0=Small, 1=Medium, 2=Large )"
+      }
+    }
+  },
+  "variables": {
+    "appServicePlanName":"[parameters('siteName')]",
+    "enableAlwaysOn":true
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-04-01",
+      "name": "[variables('appServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "name": "[variables('appServicePlanName')]",
+        "sku": "[variables('tier')]",
+        "workerSize": "[parameters('workerSize')]",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "apiVersion": "2015-06-01",
+      "name": "[parameters('siteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+      ],
+      "properties": {
+        "name": "[parameters('siteName')]",
+        "serverFarmId": "[parameters('appServicePlanName')]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2015-06-01",
+          "name": "web",
+          "type": "config",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+          ],
+          "properties": {
+            "phpVersion": "off",
+            "netFrameworkVersion": "v4.5",
+            "use32BitWorkerProcess": false,
+            "webSocketsEnabled": true,
+            "alwaysOn": true,
+            "requestTracingEnabled": true,
+            "httpLoggingEnabled": true,
+            "logsDirectorySizeLimit": 40,
+            "detailedErrorLoggingEnabled": true
+          }
+        }
+      ]
+    }
+  ]
+}
