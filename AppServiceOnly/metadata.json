@@ -1,7 +1,7 @@
 {
   "itemDisplayName": "App Service Only",
-  "description": "Creates an Azure Web app with Golang extension, Template and Golang Extension originally authored by Wade Wegner of Microsoft",
+  "description": "Azure Quick Start Template",
   "summary": "This template creates an Azure App Service Service plan, relates App Service, and adds traffic manager. Template originally authored by Bruce Bell of Exigo Office, Inc.",
-  "githubUsername": "brucebexigo",
+  "githubUsername": "puneetsaraswat",
   "dateUpdated": "2017-05-10"
 }
