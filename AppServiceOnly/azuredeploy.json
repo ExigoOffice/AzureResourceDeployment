@@ -18,7 +18,8 @@
       ],
       "defaultValue": "Standard",
       "metadata": {
-        "description": "SKU value"
+        "description": "SKU value",
+        "displayName": "something",
       }
     },
     "workerSize": {
