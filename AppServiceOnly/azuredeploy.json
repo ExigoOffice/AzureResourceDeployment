@@ -18,11 +18,10 @@
       ],
       "defaultValue": "Standard",
       "metadata": {
-        "description": "SKU value",
-        "displayName": "something"
+        "description": "SKU value"
       }
     },
-    "workerSize": {
+    "serviceSize": {
       "type": "string",
       "allowedValues": [
         "0",
@@ -31,8 +30,22 @@
       ],
       "defaultValue": "2",
       "metadata": {
-        "description": "Worker Size( 0=Small, 1=Medium, 2=Large )"
+        "description": "Service Size( 0=Small, 1=Medium, 2=Large )"
       }
+    },
+    "instanceCount":{
+     "type": "string",
+     "allowedValues": [
+       "1",
+       "2",
+       "3",
+       "4",
+       "5"
+     ],
+     "defaultValue": "2",
+     "metadata": {
+       "description": "Number of instances to deploy"
+     }
     }
   },
   "variables": {
@@ -49,7 +62,7 @@
         "name": "[variables('appServicePlanName')]",
         "sku": "[variables('serviceTier')]",
         "workerSize": "[parameters('workerSize')]",
-        "numberOfWorkers": 1
+        "numberOfWorkers": "[parameters('instanceCount')]"
       }
     },
     {
