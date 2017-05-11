@@ -8,7 +8,7 @@
         "description": "Name of azure web app"
       }
     },
-    "tier": {
+    "serviceTier": {
       "type": "string",
       "allowedValues": [
         "Free",
@@ -46,7 +46,7 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "name": "[variables('appServicePlanName')]",
-        "sku": "[variables('tier')]",
+        "sku": "[variables('serviceTier')]",
         "workerSize": "[parameters('workerSize')]",
         "numberOfWorkers": 1
       }

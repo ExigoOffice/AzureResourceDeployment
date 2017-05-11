@@ -1,7 +1,7 @@
 {
   "itemDisplayName": "App Service Only",
-  "description": "Azure Quick Start Template",
-  "summary": "This template creates an Azure App Service Service plan, relates App Service, and adds traffic manager. Template originally authored by Bruce Bell of Exigo Office, Inc.",
+  "description": "App Service Only",
+  "summary": "This template creates an Azure App Service Service plan, relates App Service. Template originally authored by Bruce Bell of Exigo Office, Inc.",
   "githubUsername": "exigoOffice",
   "dateUpdated": "2017-05-10"
 }
