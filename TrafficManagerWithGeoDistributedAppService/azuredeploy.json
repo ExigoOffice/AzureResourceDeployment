@@ -8,7 +8,7 @@
         "description": "Name of azure web app"
       }
     },
-    "tier": {
+    "serviceTier": {
       "type": "string",
       "allowedValues": [
         "Free",
@@ -21,7 +21,7 @@
         "description": "SKU value"
       }
     },
-    "workerSize": {
+    "serviceSize": {
       "type": "string",
       "allowedValues": [
         "0",
@@ -30,8 +30,22 @@
       ],
       "defaultValue": "2",
       "metadata": {
-        "description": "Worker Size( 0=Small, 1=Medium, 2=Large )"
+        "description": "Service Size( 0=Small, 1=Medium, 2=Large )"
       }
+    },
+    "instanceCount":{
+     "type": "string",
+     "allowedValues": [
+       "1",
+       "2",
+       "3",
+       "4",
+       "5"
+     ],
+     "defaultValue": "2",
+     "metadata": {
+       "description": "Number of instances to deploy"
+     }
     }
   },
   "variables": {
@@ -46,9 +60,9 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "name": "[variables('appServicePlanName')]",
-        "sku": "[variables('tier')]",
-        "workerSize": "[parameters('workerSize')]",
-        "numberOfWorkers": 1
+        "sku": "[parameters('serviceTier')]",
+        "workerSize": "[parameters('serviceSize')]",
+        "numberOfWorkers": "[parameters('instanceCount')]"
       }
     },
     {
@@ -61,7 +75,7 @@
       ],
       "properties": {
         "name": "[parameters('siteName')]",
-        "serverFarmId": "[parameters('appServicePlanName')]"
+        "serverFarmId": "[variables('appServicePlanName')]"
       },
       "resources": [
         {
